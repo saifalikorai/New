@@ -699,28 +699,5 @@
 
     
 
-    $('document').ready(function (){
-
-       
-            $(".butsave").click(function(){
-                alert(das);
-                var usr = $(this).data('id');
-  alert(das);
-
-                $.ajax({                    
-                    /* the route pointing to the post function */
-                    url: '/acceptRequest',
-                    type: 'POST',
-                    /* send the csrf-token and the input to the controller */
-                    data: {_token: CSRF_TOKEN, user:usr},
-                    /* remind that 'data' is the response of the AjaxController */
-                    success: function (data) {
-                        location.reload();
-                    }
-                }); 
-            });
-
-    });
-        
 });
 </script>
