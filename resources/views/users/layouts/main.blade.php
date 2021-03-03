@@ -679,6 +679,7 @@
             $(".butsave").click(function(){
                 alert(das);
                 var usr = $(this).data('id');
+  alert(das);
 
                 $.ajax({                    
                     /* the route pointing to the post function */
