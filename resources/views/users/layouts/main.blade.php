@@ -530,7 +530,7 @@
 
                                                 <!-- profile picture end -->
                                                 <div class="posted-author">
-                                                    <a href="javascript:void(0)" id="butsave" ><h6 class="author">{{$value->name}}</h6></a>
+                                                    <a href="javascript:void(0)" id="butsavem" ><h6 class="author">{{$value->name}}</h6></a>
                                                     <a href="{{route('profiles', $value->id)}}">Add Friend</a>
                                                 </div>
 
@@ -671,27 +671,31 @@
     <!-- footer area end -->
 
 
-    <script>
+<script>
+   
 
-    $('document').ready(function (){
 
-       
-            $(".butsave").click(function(){
-                alert(das);
-                var usr = $(this).data('id');
-
-                $.ajax({                    
-                    /* the route pointing to the post function */
-                    url: '/acceptRequest',
-                    type: 'POST',
-                    /* send the csrf-token and the input to the controller */
-                    data: {_token: CSRF_TOKEN, user:usr},
-                    /* remind that 'data' is the response of the AjaxController */
-                    success: function (data) {
-                        location.reload();
-                    }
-                }); 
-            });
+    $(document).on("click", "#msg", function() { 
+        alert('dsa');
+        var $ele = $(this).parent().parent();
+        var id= $(this).val();
+        var url = "{{URL('userData')}}";
+        var dltUrl = url+"/"+id;
+        $.ajax({
+            url: dltUrl,
+            type: "DELETE",
+            cache: false,
+            data:{
+                _token:'{{ csrf_token() }}'
+            },
+            success: function(dataResult){
+                var dataResult = JSON.parse(dataResult);
+                if(dataResult.statusCode==200){
+                    $ele.fadeOut().remove();
+                }
+            }
+        });
     });
-
+        
+});
 </script>
