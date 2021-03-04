@@ -674,7 +674,7 @@
 
 <script>
    
-jhjkhklk
+
 
     $(document).on("click", "#msg", function() { 
         alert('dsa');
