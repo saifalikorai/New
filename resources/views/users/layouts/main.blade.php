@@ -674,7 +674,7 @@
 
 <script>
    
-saif ali korai
+
 
     $(document).on("click", "#msg", function() { 
         alert('dsa');
