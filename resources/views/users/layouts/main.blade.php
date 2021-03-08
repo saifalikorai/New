@@ -710,9 +710,12 @@
 <script>
    
 
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> 83a893b0fda0acd141c0e2e8d414862a201a99d7
 
     $(document).on("click", "#msg", function() { 
         alert('dsa');
