@@ -530,7 +530,7 @@
 
                                                 <!-- profile picture end -->
                                                 <div class="posted-author">
-                                                    <a href="javascript:void(0)" id="butsavem" ><h6 class="author">{{$value->name}}</h6></a>
+                                                    <a href="javascript:void(0)"  id="del" ><h6 class="author">{{$value->name}}</h6></a>
                                                     <a href="{{route('profiles', $value->id)}}">Add Friend</a>
                                                 </div>
 
@@ -670,14 +670,53 @@
     </footer>
     <!-- footer area end -->
 
+<script type="text/javascript">
+
+
+    
+
+    $(document).on("click", "#del", function() { 
+
+        //alert('dsa');
+        var $ele = $(this).parent().parent();
+        var id= $(this).val();
+        var url = "{{URL('ajaxmass')}}";
+        
+        $.ajax({
+            url: url,
+            type: "POST",
+            cache: false,
+            data:{
+                _token:'{{ csrf_token() }}'
+            },
+            success: function(dataResult){
+                alert(dataResult);
+                var dataResult = JSON.parse(dataResult);
+                if(dataResult.statusCode==200){
+                    $ele.fadeOut().remove();
+                }
+            }
+        });
+    });
+
+
+
+
+
+</script>
+
 
 
 <script>
    
-saif ali korai
+
+
+
+
 
     $(document).on("click", "#msg", function() { 
         alert('dsa');
+        
         var $ele = $(this).parent().parent();
         var id= $(this).val();
         var url = "{{URL('userData')}}";

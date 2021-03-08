@@ -131,5 +131,12 @@ class BlogController extends Controller
     }
 
 
+    public function AjaxMass()
+    {
+      echo "working";
+    }
+
+
+
 
 }
