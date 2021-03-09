@@ -31,7 +31,9 @@
 
                                                     <!-- message content start -->
                                                     <div class="msg-content">
-                                                        <h6 class="author"><a href="profile.html">Mili Raoulin</a></h6>
+                                                        <h6 class="author">
+                                                            <a href="profile.html">Mili Raoulin</a>
+                                                        </h6>
                                                         <p>Many desktop publishing packages and web page editors now use Lorem Ipsum as their default</p>
                                                     </div>
                                                     <!-- message content end -->
@@ -492,6 +494,9 @@
     <!-- Scroll to Top End -->
 
     <!-- footer area start -->
+   {{-- inbox Message box start --}}
+
+    <!-- footer area start -->
     <footer class="d-none d-lg-block">
         <div class="footer-area reveal-footer">
             <div class="container-fluid">
@@ -509,34 +514,28 @@
                                     <div class="frnd-search-title">
                                         <button class="frnd-search-icon"><i class="flaticon-settings"></i></button>
                                         <p>search for friends</p>
-                                        <button class="close-btn" data-close="friend-search-list"><i class="flaticon-cross-out"></i></button>
+                                        <button class="close-btn" data-close="friend-search-list"><i class="flaticon-cross-out" ></i></button>
                                     </div>
                                     <div class="frnd-search-inner custom-scroll">
                                         <ul>
                                             <!-- show other users -->
                                             @foreach($person as $key => $value)
+                                           
                                             <li class="d-flex align-items-center profile-active">
                                                 <!-- profile picture end -->
                                                 <div class="profile-thumb active">
-                                                    <a href="">
+                                                    <a href="javascript:" id="submitt" value="1" >
                                                         <figure class="profile-thumb-small">
-                                                            <img src="{{$value->profile_pic_path}}" alt="profile picture">
+                                                        <img src="{{$value->profile_pic_path}}" alt="profile picture">
                                                         </figure>
                                                     </a>
                                                 </div>
-
-
-                                                
-
                                                 <!-- profile picture end -->
                                                 <div class="posted-author">
-                                                    <a href="javascript:void(0)"  id="del" ><h6 class="author">{{$value->name}}</h6></a>
+<a href="javascript:void(0)" id="submit" data-custom-value="{{$value->id}}" data-custom-valuee="{{ Auth::user()->id }}" >
+                                                        <h6 class="author">{{$value->name}}</h6></a>
                                                     <a href="{{route('profiles', $value->id)}}">Add Friend</a>
                                                 </div>
-
-                                            
-
-
 
                                             </li>
                                             @endforeach
@@ -566,65 +565,24 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="footer-card position-relative">
-                                <div class="live-chat-inner">
-                                    <div class="chat-text-field">
-                                        <textarea class="live-chat-field custom-scroll" placeholder="Text Message"></textarea>
-                                        <button class="chat-message-send" type="submit" value="submit">
-                                            <img src="{{asset('images/icons/plane.png')}}" alt="">
-                                        </button>
-                                    </div>
-                                    <div class="chat-output-box">
-                                        <div class="live-chat-title">
-                                            <!-- profile picture end -->
-                                            <div class="profile-thumb active">
-                                                <a href="#">
-                                                    <figure class="profile-thumb-small">
-                                                        <img src="{{asset('images/profile/profile-small-5.jpg')}}" alt="profile picture">
-                                                    </figure>
-                                                </a>
-                                            </div>
-                                            <!-- profile picture end -->
-                                            <div class="posted-author">
-                                                <h6 class="author"><a href="profile.html">Robart Marloyan</a></h6>
-                                                <span class="active-pro">active now</span>
-                                            </div>
-                                            <div class="live-chat-settings ml-auto">
-                                                <!-- <button class="chat-settings"><i class="flaticon-settings"></i></button> -->
-                                                <button class="close-btn" data-close="chat-output-box"><i class="flaticon-cross-out"></i></button>
-                                            </div>
-                                        </div>
-                                        <div class="message-list-inner">
-                                            <ul class="message-list custom-scroll">
-                                                <li class="text-friends">
-                                                    <p>Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text</p>
-                                                    <div class="message-time">10 minute ago</div>
-                                                </li>
-                                                <li class="text-author">
-                                                    <p>Many desktop publishing packages and web page editors</p>
-                                                    <div class="message-time">5 minute ago</div>
-                                                </li>
-                                                <li class="text-friends">
-                                                    <p>packages and web page editors </p>
-                                                    <div class="message-time">2 minute ago</div>
-                                                </li>
-                                                <li class="text-friends">
-                                                    <p>Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text</p>
-                                                    <div class="message-time">10 minute ago</div>
-                                                </li>
-                                                <li class="text-author">
-                                                    <p>Many desktop publishing packages and web page editors</p>
-                                                    <div class="message-time">5 minute ago</div>
-                                                </li>
-                                                <li class="text-friends">
-                                                    <p>packages and web page editors </p>
-                                                    <div class="message-time">2 minute ago</div>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
+
+{{-- Inbox Message start End --}}
+
+
+{{-- Message box start --}}
+
+
+                            <div class="footer-card position-relative" id="messages">
+                                
                             </div>
+                        
+
+
+{{-- Message box end --}}
+
+
+
+
                         </div>
                     </div>
                 </div>
@@ -670,40 +628,90 @@
     </footer>
     <!-- footer area end -->
 
-<script type="text/javascript">
+<script>
 
 
-    
 
-    $(document).on("click", "#del", function() { 
 
-        //alert('dsa');
-        var $ele = $(this).parent().parent();
-        var id= $(this).val();
-        var url = "{{URL('ajaxmass')}}";
+
+    $(document).on("click", "#submit", function() { 
+        
+        var receiverId = $(this).data("custom-value");
+        var senderId = $(this).data("custom-valuee");
+       // alert(receiverId);
+        //alert(senderId);
+        var url = "{{URL('ajaxRequest')}}";
+        
+        //var dltUrl = url+"/"+id;
         
         $.ajax({
             url: url,
             type: "POST",
             cache: false,
             data:{
+
+                receiverId: receiverId, senderId: senderId,
+          
+         
                 _token:'{{ csrf_token() }}'
             },
+            
+                
+           
             success: function(dataResult){
-                alert(dataResult);
-                var dataResult = JSON.parse(dataResult);
-                if(dataResult.statusCode==200){
-                    $ele.fadeOut().remove();
-                }
+               //alert(dataResult);
+                $("#messages").append(dataResult);
+                //var dataResult = JSON.parse(dataResult);
+                
             }
         });
     });
 
 
-sdfs
+    $(document).on("click", "#submitt", function() { 
+
+
+    
+
+
+        var receiverId = $('#receiverId').val();
+        var senderId = $('#senderId').val();
+        var textMessages = $('#textMessages').val();
+        
+        //alert(textMessages);
+        
+        var url = "{{URL('sendMessage')}}";
+        
+        
+        
+        $.ajax({
+            url: url,
+            type: "POST",
+            cache: false,
+            data:{
+
+                receiverId: receiverId, senderId: senderId,textMessages:textMessages,
+          
+                _token:'{{ csrf_token() }}'
+            },
+            
+                
+           
+            success: function(dataResult){
+               alert('dataResult');
+                $("#messages").append(dataResult);
+                //var dataResult = JSON.parse(dataResult);
+                
+            }
+        });
+    });
+
+
+
+
+
 
 
 </script>
-
 
 
