@@ -34,7 +34,7 @@
                                                         <h6 class="author">
                                                             <a href="profile.html">Mili Raoulin</a>
                                                         </h6>
-                                                        <p>Many desktop publishing packages and web page editors now use Lorem Ipsum as their default</p>
+                                                        <p> Many desktop publishing packages and web page editors now use Lorem Ipsum as their default </p>
                                                     </div>
                                                     <!-- message content end -->
 
@@ -201,9 +201,16 @@
 
                                                     <!-- message content start -->
                                                     <div class="msg-content notification-content">
-                                                        <h6><a href="{{route('profiles', $value->suser->id)}}">{{$value->suser->name}}</a></h6>
-                                                        <p><a class="btn btn-sm confirm-req" data-id="{{$value->suser->id}}" href="javascript:void(0)">confirm</a>
-                                                            <a class="btn btn-sm delete" href="">delete</a></p>
+                                                        
+                                                        <h6>
+                                                        <a href="{{route('profiles', $value->suser->id)}}">{{$value->suser->name}}</a>
+                                                        </h6>
+                                                        
+                                                        <p>
+                                                    <a class="btn btn-sm confirm-req" data-id="{{$value->suser->id}}" href="javascript:void(0)">confirm</a>
+                                                            
+                                                            <a class="btn btn-sm delete" href="">delete</a>
+                                                        </p>
                                                     </div>
                                                     <!-- message content end -->
 
@@ -512,9 +519,13 @@
                                 </div>
                                 <div class="friend-search-list">
                                     <div class="frnd-search-title">
-                                        <button class="frnd-search-icon"><i class="flaticon-settings"></i></button>
+                                        <button class="frnd-search-icon">
+                                            <i class="flaticon-settings"></i>
+                                        </button>
                                         <p>search for friends</p>
-                                        <button class="close-btn" data-close="friend-search-list"><i class="flaticon-cross-out" ></i></button>
+                                        <button class="close-btn" data-close="friend-search-list">
+                                            <i class="flaticon-cross-out" ></i>
+                                        </button>
                                     </div>
                                     <div class="frnd-search-inner custom-scroll">
                                         <ul>
@@ -532,7 +543,7 @@
                                                 </div>
                                                 <!-- profile picture end -->
                                                 <div class="posted-author">
-<a href="javascript:void(0)" id="submit" data-custom-value="{{$value->id}}" data-custom-valuee="{{ Auth::user()->id }}" >
+<a href="javascript:void(0)" id="showMessageBox" data-receiver-id="{{$value->id}}" data-sender-id="{{ Auth::user()->id }}" >
                                                         <h6 class="author">{{$value->name}}</h6></a>
                                                     <a href="{{route('profiles', $value->id)}}">Add Friend</a>
                                                 </div>
@@ -634,33 +645,26 @@
 
 
 
-    $(document).on("click", "#submit", function() { 
+    $(document).on("click", "#showMessageBox", function() { 
         
-        var receiverId = $(this).data("custom-value");
-        var senderId = $(this).data("custom-valuee");
-       // alert(receiverId);
+        var receiverId = $(this).data("receiver-id");
+        var senderId = $(this).data("sender-id");
+        //alert(receiverId);
         //alert(senderId);
-        var url = "{{URL('ajaxRequest')}}";
-        
+        var url = "{{URL('showMessageBox')}}";
         //var dltUrl = url+"/"+id;
-        
         $.ajax({
             url: url,
             type: "POST",
             cache: false,
             data:{
 
-                receiverId: receiverId, senderId: senderId,
-          
-         
-                _token:'{{ csrf_token() }}'
+                receiverId: receiverId, senderId: senderId, _token:'{{ csrf_token() }}'
             },
             
-                
-           
             success: function(dataResult){
                //alert(dataResult);
-                $("#messages").append(dataResult);
+               $("#messages").append(dataResult);
                 //var dataResult = JSON.parse(dataResult);
                 
             }
@@ -668,17 +672,13 @@
     });
 
 
-    $(document).on("click", "#submitt", function() { 
-
-
-    
-
+    $(document).on("click", "#sendMessage", function() { 
 
         var receiverId = $('#receiverId').val();
         var senderId = $('#senderId').val();
         var textMessages = $('#textMessages').val();
         
-        //alert(textMessages);
+        //alert(receiverId);
         
         var url = "{{URL('sendMessage')}}";
         
@@ -691,15 +691,15 @@
             data:{
 
                 receiverId: receiverId, senderId: senderId,textMessages:textMessages,
-          
+                
                 _token:'{{ csrf_token() }}'
             },
             
-                
-           
+            
+            
             success: function(dataResult){
                alert('dataResult');
-                $("#messages").append(dataResult);
+               $("#messages").append(dataResult);
                 //var dataResult = JSON.parse(dataResult);
                 
             }
