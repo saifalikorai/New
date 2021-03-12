@@ -75,8 +75,8 @@ Route::group(['middleware' => ['auth']], function () {
 
 	
 	// Message rout
-	Route::post('showMessageBox', 'AjaxController@index')->name('ajaxRequest');
-	Route::post('sendMessage', 'AjaxController@sendMessage')->name('sendMessage');
+	Route::post('showMessageBox', 'messageController@index')->name('ajaxRequest');
+	Route::post('sendMessage', 'messageController@sendMessage')->name('sendMessage');
 	//Route::post('inserMessage', 'AjaxController@inserMessage')->name('inserMessage');
 
 });

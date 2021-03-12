@@ -646,10 +646,10 @@
 
 
     $(document).on("click", "#showMessageBox", function() { 
-        
+
         var receiverId = $(this).data("receiver-id");
         var senderId = $(this).data("sender-id");
-        //alert(receiverId);
+        alert(receiverId);
         //alert(senderId);
         var url = "{{URL('showMessageBox')}}";
         //var dltUrl = url+"/"+id;
@@ -661,7 +661,7 @@
 
                 receiverId: receiverId, senderId: senderId, _token:'{{ csrf_token() }}'
             },
-            
+
             success: function(dataResult){
                //alert(dataResult);
                $("#messages").append(dataResult);
@@ -678,7 +678,7 @@
         var senderId = $('#senderId').val();
         var textMessages = $('#textMessages').val();
         
-        //alert(receiverId);
+        alert(receiverId);
         
         var url = "{{URL('sendMessage')}}";
         
@@ -691,14 +691,14 @@
             data:{
 
                 receiverId: receiverId, senderId: senderId,textMessages:textMessages,
-                
+
                 _token:'{{ csrf_token() }}'
             },
             
-            
-            
+
+
             success: function(dataResult){
-               alert('dataResult');
+               alert(dataResult);
                $("#messages").append(dataResult);
                 //var dataResult = JSON.parse(dataResult);
                 
