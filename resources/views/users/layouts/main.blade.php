@@ -635,6 +635,7 @@
 
 
 
+<<<<<<< HEAD
 $(document).on("click", "#submit", function() { 
     
     var receiverId = $(this).data("custom-value");
@@ -665,12 +666,39 @@ $(document).on("click", "#submit", function() {
             //var dataResult = JSON.parse(dataResult);
             
         }
+=======
+    $(document).on("click", "#showMessageBox", function() { 
+
+        var receiverId = $(this).data("receiver-id");
+        var senderId = $(this).data("sender-id");
+        alert(receiverId);
+        //alert(senderId);
+        var url = "{{URL('showMessageBox')}}";
+        //var dltUrl = url+"/"+id;
+        $.ajax({
+            url: url,
+            type: "POST",
+            cache: false,
+            data:{
+
+                receiverId: receiverId, senderId: senderId, _token:'{{ csrf_token() }}'
+            },
+
+            success: function(dataResult){
+               //alert(dataResult);
+               $("#messages").append(dataResult);
+                //var dataResult = JSON.parse(dataResult);
+                
+            }
+        });
+>>>>>>> 1e176beded924b730ad5b7ad5a72a484cb859567
     });
 });
 
 
 $(document).on("click", "#submitt", function() { 
 
+<<<<<<< HEAD
 
 
 
@@ -704,6 +732,38 @@ $(document).on("click", "#submitt", function() {
             //var dataResult = JSON.parse(dataResult);
             
         }
+=======
+        var receiverId = $('#receiverId').val();
+        var senderId = $('#senderId').val();
+        var textMessages = $('#textMessages').val();
+        
+        alert(receiverId);
+        
+        var url = "{{URL('sendMessage')}}";
+        
+        
+        
+        $.ajax({
+            url: url,
+            type: "POST",
+            cache: false,
+            data:{
+
+                receiverId: receiverId, senderId: senderId,textMessages:textMessages,
+
+                _token:'{{ csrf_token() }}'
+            },
+            
+
+
+            success: function(dataResult){
+               alert(dataResult);
+               $("#messages").append(dataResult);
+                //var dataResult = JSON.parse(dataResult);
+                
+            }
+        });
+>>>>>>> 1e176beded924b730ad5b7ad5a72a484cb859567
     });
 });
 
