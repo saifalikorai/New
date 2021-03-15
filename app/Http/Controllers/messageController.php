@@ -75,10 +75,12 @@ class messageController extends Controller {
 
 
 
-   public function sendMessage(Request $request){
+   public function sendMessagee(Request $request){
+
+    echo "string";
 
    	 $senderId = $request->senderId;
-   		 $receiverId = $request->receiverId;
+   		echo $receiverId = $request->receiverId;
    		 echo $textMessages = $request->textMessages;
 
    		echo $res =    DB::table('tests')->insert([
