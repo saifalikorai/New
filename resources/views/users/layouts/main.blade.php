@@ -672,36 +672,33 @@
 $(document).on("click", "#sendMessage", function() { 
 
 
-
-
-
-
     var receiverId = $('#receiverId').val();
     var senderId = $('#senderId').val();
     var textMessages = $('#textMessages').val();
     
-    alert(textMessages);
+    //alert(receiverId);
+    //alert(senderId);
+    //alert(textMessages);
+
     
-    var urll = "{{URL('sendMessage')}}";
+    var url = "{{URL('sendMessage')}}";
     
     
     
     $.ajax({
-        urll: url,
+        url: url,
         type: "POST",
         cache: false,
         data:{
 
-            receiverId: receiverId, senderId: senderId,textMessages: textMessages,
-      
-            _token:'{{ csrf_token() }}'
+            receiverId: receiverId, senderId: senderId,textMessages: textMessages, _token:'{{ csrf_token() }}'
         },
         
             
        
-        success: function(dataResult){
-        alert(dataResult);
-        //$("#messages").append(dataResult);
+        success: function(data){
+        alert(data);
+        $("#messages").append(dataResult);
         //var dataResult = JSON.parse(dataResult);
         }
 
