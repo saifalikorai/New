@@ -533,7 +533,7 @@
                                             </div>
                                             <!-- profile picture end -->
                                             <div class="posted-author">
-<a href="javascript:void(0)" id="submit" data-custom-value="{{$value->id}}" data-custom-valuee="{{ Auth::user()->id }}" >
+<a href="javascript:void(0)" id="showMessageBox" data-receiver-id="{{$value->id}}" data-sender-id="{{ Auth::user()->id }}" >
                                                     <h6 class="author">{{$value->name}}</h6></a>
                                                 <a href="{{route('profiles', $value->id)}}">Add Friend</a>
                                             </div>
@@ -635,43 +635,16 @@
 
 
 
-<<<<<<< HEAD
-$(document).on("click", "#submit", function() { 
-    
-    var receiverId = $(this).data("custom-value");
-    var senderId = $(this).data("custom-valuee");
-   // alert(receiverId);
-    //alert(senderId);
-    var url = "{{URL('ajaxRequest')}}";
-    
-    //var dltUrl = url+"/"+id;
-    
-    $.ajax({
-        url: url,
-        type: "POST",
-        cache: false,
-        data:{
 
-            receiverId: receiverId, senderId: senderId,
-      
-     
-            _token:'{{ csrf_token() }}'
-        },
-        
+
             
-       
-        success: function(dataResult){
-           //alert(dataResult);
-            $("#messages").append(dataResult);
-            //var dataResult = JSON.parse(dataResult);
-            
-        }
-=======
+   
+
     $(document).on("click", "#showMessageBox", function() { 
-
+        
         var receiverId = $(this).data("receiver-id");
         var senderId = $(this).data("sender-id");
-        alert(receiverId);
+       // alert(receiverId);
         //alert(senderId);
         var url = "{{URL('showMessageBox')}}";
         //var dltUrl = url+"/"+id;
@@ -683,7 +656,7 @@ $(document).on("click", "#submit", function() {
 
                 receiverId: receiverId, senderId: senderId, _token:'{{ csrf_token() }}'
             },
-
+            
             success: function(dataResult){
                //alert(dataResult);
                $("#messages").append(dataResult);
@@ -691,14 +664,14 @@ $(document).on("click", "#submit", function() {
                 
             }
         });
->>>>>>> 1e176beded924b730ad5b7ad5a72a484cb859567
+
     });
-});
 
 
-$(document).on("click", "#submitt", function() { 
 
-<<<<<<< HEAD
+$(document).on("click", "#sendMessage", function() { 
+
+
 
 
 
@@ -707,19 +680,19 @@ $(document).on("click", "#submitt", function() {
     var senderId = $('#senderId').val();
     var textMessages = $('#textMessages').val();
     
-    //alert(textMessages);
+    alert(textMessages);
     
-    var url = "{{URL('sendMessage')}}";
+    var urll = "{{URL('sendMessage')}}";
     
     
     
     $.ajax({
-        url: url,
+        urll: url,
         type: "POST",
         cache: false,
         data:{
 
-            receiverId: receiverId, senderId: senderId,textMessages:textMessages,
+            receiverId: receiverId, senderId: senderId,textMessages: textMessages,
       
             _token:'{{ csrf_token() }}'
         },
@@ -727,43 +700,17 @@ $(document).on("click", "#submitt", function() {
             
        
         success: function(dataResult){
-           alert('dataResult');
-            $("#messages").append(dataResult);
-            //var dataResult = JSON.parse(dataResult);
-            
+        alert(dataResult);
+        //$("#messages").append(dataResult);
+        //var dataResult = JSON.parse(dataResult);
         }
-=======
-        var receiverId = $('#receiverId').val();
-        var senderId = $('#senderId').val();
-        var textMessages = $('#textMessages').val();
-        
-        alert(receiverId);
-        
-        var url = "{{URL('sendMessage')}}";
-        
-        
-        
-        $.ajax({
-            url: url,
-            type: "POST",
-            cache: false,
-            data:{
 
-                receiverId: receiverId, senderId: senderId,textMessages:textMessages,
+      
+        
+        
+        
+       
 
-                _token:'{{ csrf_token() }}'
-            },
-            
-
-
-            success: function(dataResult){
-               alert(dataResult);
-               $("#messages").append(dataResult);
-                //var dataResult = JSON.parse(dataResult);
-                
-            }
-        });
->>>>>>> 1e176beded924b730ad5b7ad5a72a484cb859567
     });
 });
 
