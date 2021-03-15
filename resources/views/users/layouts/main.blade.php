@@ -3,7 +3,7 @@
 
 <!-- header area start -->
 <header>
-    <div class="header-top sticky bg-white d-none d-lg-block">
+    <div class="header-top sticky bg-white d-none d-lg-block py-3">
         <div class="container">
             <div class="row align-items-center inner-nav">
                 <div class="col-md-11">

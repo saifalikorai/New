@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
 } */
-.timeline-bg-content
+/* .timeline-bg-content */
 .navabar01 a{
   /* border: 1px solid black; */
   margin: 0 !important;
@@ -17,9 +17,7 @@
     margin-right: 0px !important;
     margin-left: 0px !important;
   }
-.align-items-center{
-  margin: 10px auto;
-} 
+
 ol, ul {
   /* margin-top: 0; */
   margin-bottom: 0px !important;
