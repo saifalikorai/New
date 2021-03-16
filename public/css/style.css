@@ -1,3 +1,28 @@
+/* .navabar01 {
+  display: flex;
+  align-items: center;
+} */
+/* .timeline-bg-content */
+.navabar01 a{
+  /* border: 1px solid black; */
+  margin: 0 !important;
+  padding: 0 !important;
+  height: fit-content;
+}
+.navabar01 a:hover{
+  text-decoration: none;
+}
+
+.row {
+    margin-right: 0px !important;
+    margin-left: 0px !important;
+  }
+
+ol, ul {
+  /* margin-top: 0; */
+  margin-bottom: 0px !important;
+}
+
 /*------------------------------------------------------------------
 Table of content
 -------------------
@@ -2347,7 +2372,7 @@ textarea:focus {
 
 @media only screen and (min-width: 1200px) and (max-width: 1499.98px), only screen and (min-width: 992px) and (max-width: 1199.98px), only screen and (min-width: 768px) and (max-width: 991.98px), only screen and (max-width: 767.98px) {
   .signup-form-wrapper {
-    padding: 47px 30px;
+    /* padding: 47px 30px; */
   }
 }
 
@@ -2355,7 +2380,7 @@ textarea:focus {
   color: #dc4734;
   font-size: 30px;
   font-weight: 800;
-  padding-bottom: 47px;
+  /* padding-bottom: 47px; */
 }
 
 @media only screen and (max-width: 575.98px) {
@@ -2601,7 +2626,8 @@ textarea:focus {
 
 .timeline-bg-content {
   width: 100%;
-  height: calc(100vh - 70px);
+  /* height: calc(100vh - 70px); */
+  height: 100%;
   position: relative;
   padding: 0 30px;
 }

@@ -6,7 +6,8 @@
             <div class="timeline-wrapper">
                 <div class="timeline-header">
                     <div class="container-fluid p-0">
-                        <div class="row no-gutters align-items-center">
+                        <div class="row no-gutters align-items-center m-0 p-0">
+                        <!-- <div class="row no-gutters align-items-center m-0"> -->
                             <div class="col-lg-6">
                                 <div class="timeline-logo-area d-flex align-items-center">
                                     <div class="timeline-logo">
@@ -54,11 +55,11 @@
                                     <h3 class="timeline-bg-title">Let’s see what’s happening to you and your world. Welcome in Feminbook.</h3>
                                 </div>
                             </div>
-                            <div class="col-lg-6 order-1 order-lg-2 d-flex align-items-center justify-content-center">
-                                <div class="signup-form-wrapper">
-                                    <h1 class="create-acc text-center">Create An Account</h1>
+                            <div class="col-lg-6 order-1 order-lg-2">
+                                <div class="signup-form-wrapper m-0 border">
+                                    <!-- <h5 class="create-acc text-center">Create An Account</h5> -->
                                     <div class="signup-inner text-center">
-                                        <h3 class="title">Welcome to Feminbook</h3>
+                                        <h3 class="title">Create An Account</h3>
                                         <form class="signup-inner--form" action="{{ route('register') }}" method="post">
                                             @csrf
                                             <div class="row">

@@ -73,14 +73,10 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::post('/bloginsert', 'BlogController@blogInsert')->name('bloginsert');
 	Route::post('/insert_comment', 'BlogController@insert_comment')->name('insert_comment');
 
-	//ajax rout
-	Route::post('/getmsg','AjaxController@index');
-	Route::resource('ajaxproducts','AjaxController');
-	Route::post('ajaxRequest', 'AjaxController@index')->name('ajaxRequest');
-
-	//Message
-
-Route::post('sendMessage', 'AjaxController@sendMessage')->name('sendMessage');
-//Route::post('inserMessage', 'AjaxController@inserMessage')->name('inserMessage');
+	
+	// Message rout
+	Route::post('showMessageBox', 'messageController@index')->name('ajaxRequest');
+	Route::post('sendMessage', 'messageController@sendMessagee')->name('sendMessage');
+	//Route::post('inserMessage', 'AjaxController@inserMessage')->name('inserMessage');
 
 });
