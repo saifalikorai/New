@@ -82,5 +82,6 @@ Route::group(['middleware' => ['auth']], function () {
 
 Route::post('sendMessage', 'AjaxController@sendMessage')->name('sendMessage');
 //Route::post('inserMessage', 'AjaxController@inserMessage')->name('inserMessage');
+lklklkl
 
 });
