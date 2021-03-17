@@ -631,15 +631,6 @@
 
 <script>
 
-
-
-
-
-
-
-            
-   
-
     $(document).on("click", "#showMessageBox", function() { 
         
         var receiverId = $(this).data("receiver-id");
@@ -694,28 +685,14 @@ $(document).on("click", "#sendMessage", function() {
             receiverId: receiverId, senderId: senderId,textMessages: textMessages, _token:'{{ csrf_token() }}'
         },
         
-            
-       
         success: function(data){
         alert(data);
         $("#messages").append(dataResult);
         //var dataResult = JSON.parse(dataResult);
         }
 
-      
-        
-        
-        
-       
-
     });
 });
-
-
-
-
-
-
 
 </script>
 

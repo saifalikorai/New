@@ -131,7 +131,7 @@
 
                                 <div class="posted-author"> 
                                     <h6 class="author"><a href="profile.html">{{ Auth::user()->name }}</a></h6>
-                                    <span class="post-time"> <?php  echo $value->created_at; ?></span>
+                                    <span class="post-time"> <?php  echo $value['created_at']; ?></span>
                                 </div>
 
                                 <div class="post-settings-bar">
@@ -149,24 +149,36 @@
                             </div>
                             <!-- post title start -->
                             <div class="post-content">
-                                  <label for="exampleInputEmail1"> <?php  echo $value->title; ?></label>
+                                  <label for="exampleInputEmail1"> <?php  echo $value['title']; ?></label>
                                 <p class="post-desc">
-                                  <?php  echo $value->tag_line; ?>
+                                  <?php  echo $value['tag_line']; ?>
                                 </p>
                                 <div class="post-thumb-gallery">
                                     <figure class="post-thumb img-popup">
-                                        <a href="">
-                                            <img src='{{ asset("images/blog/$value->image") }}' alt="post image">
+                                        <a href=""><?php $image=$value['image']; ?>
+                                            <img src='{{"images/blog/$image" }}' alt="post image">
                                         </a>
                                     </figure>
                                 </div>
                                 <div class="post-meta">
+                                    
+                                   <span id="icon_{{$value['id']}}">
+                                    @if($value['my_like'])
+                                    
                                     <button class="post-meta-like">
-                                        <i id="butsave" value="<?php echo $value->id; ?>" class="fa fa-thumbs-up"> </i>
+                                        <i id="dislike_blog" onclick="dislike_blog(<?php echo $value['id']; ?>)" value="<?php echo $value['id']; ?>" class="fa fa-thumbs-up"> </i>
 
+                                     <!-- // blue color -->
+                                    </button>
+                                     @else 
+                                    <button class="post-meta-like">
+                                        <i id="like_blog" onclick="like_blog(<?php echo $value['id']; ?>)" value="<?php echo $value['id']; ?>" class="fa fa-thumbs-down"> </i>
+                                    <!-- //white color -->
                                      
                                     </button>
-                                      <span>  1 people like this</span>
+                                     @endif 
+                                 </span>
+                                      <span id="count_{{$value['id']}}" >  <?php echo count($value['like']);?> </span><p>people like this</p>
 
                                      
                                        
@@ -194,7 +206,7 @@
                                         <div class="img-push">
                                             <input type="text" name="comment" placeholder="Press enter to post comment" class="form-control form-control-sm">
 
-                                            <input type="hidden" name="blog_id" value=" <?php  echo $value->id; ?> " > 
+                                            <input type="hidden" name="blog_id" value=" <?php  echo $value['id']; ?> " > 
 
                                            <button type="submit" class="btn btn-primary">Post</button>
 
@@ -284,35 +296,93 @@
 
 
     <script>
-$(document).ready(function() {
+// $(document).ready(function() {
    
-    $('#butsave').on('click', function() {
-     // var name = $('#butsave').val();
+    // $('#like_blog').on('click', function() {
+        function dislike_blog(val){
 
-      alert(name);
+              console.log(val);
+      // alert(name);
 
-     die();
+     
      
           $.ajax({
-              url: "/blog",
+              url: "{{URL('/dislikeblog')}}",
               type: "POST",
               data: {
                   
                   
-                  name: name
+                  blog_id: val,
+                  _token:'{{ csrf_token() }}'
                  
               },
-              cache: true,
+              
+            cache: false,
+            dataType: 'json',
               success: function(dataResult){
                   console.log(dataResult);
-                
+                  var id="#icon_"+val;
+                  let count="#count_"+val;
+                  console.log(id);
+                  console.log(count);
+                  var button=$(id).html();
+                  $(id).empty();
+                // console.log($(id).html());
+                  var button="<button class='post-meta-like'><i onclick='like_blog("+val+")' value='"+val+"' class='fa fa-thumbs-down'> </i></button>"
+                $(id).append(button);
+                var asd=parseInt($(count).html());
+                asd=asd-1;
+                $(count).empty();
+                console.log(asd);
+                 $(count).append(asd);
+              }
+          });
+      
+        }
+        function like_blog(val){
+      // var name = $('#like_blog').val();
+      console.log(val);
+      // alert(name);
+
+     
+     
+          $.ajax({
+              url: "{{URL('/likeblog')}}",
+              type: "POST",
+              data: {
+                  
+                  
+                  blog_id: val,
+                  _token:'{{ csrf_token() }}'
+                 
+              },
+              
+            cache: false,
+            dataType: 'json',
+              success: function(dataResult){
+                  console.log(dataResult);
+                   console.log(dataResult);
+                  var id="#icon_"+val;
+                    let count="#count_"+val;
+                  console.log(count);
+                  var button=$(id).html();
+                  $(id).empty();
+                console.log($(id).html());
+                  var button="<button class='post-meta-like'><i onclick='dislike_blog("+val+")' value='"+val+"' class='fa fa-thumbs-up'> </i></button>"
+                console.log(button);
+                $(id).append(button);
+                 var asd=parseInt($(count).html());
+                asd=asd+1;
+                $(count).empty();
+                console.log(asd);
+                 $(count).append(asd);
                   
               }
           });
       
-      
-  });
-});
+      }
+  // });
+// });
 </script>
 
 

@@ -7,6 +7,8 @@ use App\User;
 use App\Model\Post;
 use App\Model\FriendRequest;
 use App\Model\FriendList;
+use App\Model\Blog;
+use App\Model\BlogLike;
 
 use Auth;
 use DB;
@@ -48,12 +50,22 @@ class BlogController extends Controller
 
         $friends = FriendList::with('suser')->where('user_id', Auth::user()->id)->get();
 
-        $blog = DB::table('blogs')->get();
-
-       // print_r($blog);
-
-          
-        //exit();
+        $blog = Blog::with('like')->get()->toArray();
+        $i=0;
+        
+        foreach ($blog as $value) {
+         $like_array =$value['like'];
+         $blog[$i]['my_like']=false;
+         if(!empty($like_array)){
+          foreach ($like_array as $value1) {
+            if($value1['user_id']==Auth::user()->id){
+              $blog[$i]['my_like']=true;
+            }
+          }
+         }
+        
+         $i++;
+      }
         
         return view('users.blog.blog', compact('person', 'post', 'friend', 'friends', 'blog'));
     }
@@ -134,6 +146,38 @@ class BlogController extends Controller
     public function AjaxMass()
     {
       echo "working";
+    }
+
+
+    public function likeblog(Request $req)
+    {
+        // die($req->blog_id);
+        $blog_id=$req->blog_id;
+        $user_id=Auth::user()->id;
+
+        // $like=BlogLike::insert($user_id,$blog_id,"like");
+        //return $like;
+         $result = DB::table('blogs_likes')->insert([
+                    'user_id' => $user_id,
+                    'blog_id' => $blog_id,
+                    'is_liked' => 'like',
+
+        ]);
+         return "true";
+
+    }
+
+    public function dislikeblog(Request $req)
+    {
+        // die($req->blog_id);
+        $blog_id=$req->blog_id;
+        $user_id=Auth::user()->id;
+
+        // $like=BlogLike::find(1)->where('user_id','=',$user_id);
+        //return $like;
+         $result = BlogLike::where('user_id', $user_id)->where('blog_id',$blog_id)->delete();
+         return "true";
+
     }
 
 
