@@ -9,6 +9,7 @@ use App\Model\FriendRequest;
 use App\Model\FriendList;
 use App\Model\Blog;
 use App\Model\BlogLike;
+use App\Model\BlogComment;
 
 use Auth;
 use DB;
@@ -50,7 +51,8 @@ class BlogController extends Controller
 
         $friends = FriendList::with('suser')->where('user_id', Auth::user()->id)->get();
 
-        $blog = Blog::with('like')->get()->toArray();
+        $blog = Blog::with('like','comment','user')->orderBy('created_at','desc')->get()->toArray();
+        // echo "<pre>";print_r($blog);die();
         $i=0;
         
         foreach ($blog as $value) {
@@ -68,6 +70,13 @@ class BlogController extends Controller
       }
         
         return view('users.blog.blog', compact('person', 'post', 'friend', 'friends', 'blog'));
+    }
+    public function showallcomment(Request $req)
+    {
+      $blog_id=$req['blog_id'];
+
+      $comment = BlogComment::with('user')->where('blog_id',$blog_id)->get()->toArray();
+      return $comment;
     }
 
 
@@ -119,7 +128,7 @@ class BlogController extends Controller
     {
         
         //return $request;
-       echo $userid = Auth::user()->id;
+        echo $userid = Auth::user()->id;
         echo $comment = $request->comment;
         echo $blog_id = $request->blog_id;
         
@@ -135,8 +144,10 @@ class BlogController extends Controller
 
         if ($resulte){
 
-          //return redirect('/blog')->with($request->session()->flash('status', 'Task was successful!'));
-          return redirect()->route('blog')->with('success1', 'Post Created Successfully');
+          //echo ("hello");
+
+          return redirect('/blog')->with($request->session()->flash('status', 'Task was successful!'));
+         // return redirect()->route('blog')->with('success1', 'Post Created Successfully');
         }
 
         //echo "string";      
