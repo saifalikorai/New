@@ -82,5 +82,7 @@ Route::group(['middleware' => ['auth']], function () {
 	// like and dislike
 	Route::post('/likeblog','BlogController@likeblog');
 	Route::post('/dislikeblog','BlogController@dislikeblog');
+	Route::get('/showallcomment','BlogController@showallcomment');
+
 
 });
