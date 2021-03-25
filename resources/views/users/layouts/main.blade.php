@@ -658,13 +658,13 @@
 
     });
 
-
+<<<<<<< HEAD
 $(document).on("click", "#sendMessage", function() { 
-
+=======
 
 
 $(document).on("click", "#sendMessage", function() {
-
+>>>>>>> 72e5d6c5ec34aafda6fcdcd48094b3844d420471
 
 $("#sendMessage").attr("disabled", "disabled"); 
 
