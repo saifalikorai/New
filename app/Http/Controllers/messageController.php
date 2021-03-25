@@ -60,11 +60,11 @@ class messageController extends Controller {
       </div>
       <form action="javascript:void(0)" method="post">
 
-        Name: <input type="text" id="textMessages"  name="usrname">
+        <input type="text" id="textMessages"  name="usrname">&nbsp;<input type="submit" placeholder="Send" value="send" id="sendMessage">
         
         <input type="hidden" id="receiverId" value="<?php echo $receiverId; ?>">
         <input type="hidden" id="senderId" value="<?php echo $senderId; ?>">
-        <input type="submit" id="sendMessage">
+        
       </form>
     </div>
   </div>
@@ -111,7 +111,7 @@ class messageController extends Controller {
         </div>
         <!-- profile picture end -->
         <div class="posted-author">
-          <h6 class="author"><a href="">Robart Marloyan</a></h6>
+          <h6 class="author"><a href="">Robart Marloyan gfd</a></h6>
           <span class="active-pro">active now</span>
         </div>
         
@@ -122,7 +122,7 @@ class messageController extends Controller {
          
           
           <li class="text-author">
-            <p>Many desktop publishing packages and web page editors</p>
+            <p><?php echo $textMessages; ?>   </p>
             <div class="message-time">5 minute ago</div>
           </li>
           
