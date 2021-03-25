@@ -75,7 +75,7 @@ class BlogController extends Controller
     {
       $blog_id=$req['blog_id'];
 
-      $comment = BlogComment::with('user')->where('blog_id',$blog_id)->get()->toArray();
+      $comment = BlogComment::with('user')->where('blog_id',$blog_id)->orderBy('created_at','desc')->get()->toArray();
       return $comment;
     }
 

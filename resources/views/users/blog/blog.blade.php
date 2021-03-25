@@ -40,8 +40,8 @@
                                 </div>
                                 <div class="share-content-box w-100">
                                     <form class="share-text-box">
-                                        <textarea name="share" class="share-text-field" aria-disabled="true" placeholder="Say Something" data-toggle="modal" data-target="#textbox" id="email"></textarea>
-                                        <button class="btn-share" type="submit">share</button>
+                                        <input name="share" class="share-text-field" aria-disabled="true" placeholder="What's on your mind, {{ Auth::user()->name }}?" data-toggle="modal" data-target="#textbox" id="email">
+                                        <button class="btn-share">share</button>
                                     </form>
                                     @if(session()->has('success1'))
                                         <div id="toast-container" class="toast-top-right">
@@ -60,7 +60,7 @@
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title">Post Your Blog</h5>
+                                            <h4 class="modal-title">Post Your Blog</h4>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
@@ -69,13 +69,16 @@
                                         
                                             <div class="modal-body">
                                                
-                                            <label for="exampleInputEmail1">Title</label>
-                                                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="title" placeholder="Blog Title">
-                                                    <label> Description </label> 
-                                           
-                                                <textarea id="caption" name="caption" class="share-field-big custom-scroll" placeholder="Say Something" required></textarea>
+                                            <label>Title</label>
+                                                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="title" placeholder="Blog Title"><br>
+
+                                            <label>Description</label> 
+                                                <textarea id="caption" name="caption" class="share-field-big custom-scroll" placeholder="Say Something" required></textarea><br><br>
+
+                                            <label>Select Image</label>
                                                 <input type="file" class=""  id="picture" name="image" multiple accept=".jpg, .jpeg, .png, .gif" />
                                             </div>
+
                                             <div class="modal-footer">
                                                 <button type="button" class="post-share-btn" data-dismiss="modal">cancel</button>
                                                 <button type="submit" class="post-share-btn" >done</button>
@@ -110,7 +113,10 @@
 
                                 <div class="posted-author"> 
                                     <h6 class="author"><a href="profile.html">{{ $value['user']['name'] }}</a></h6>
-                                    <span class="post-time"> <?php  echo $value['created_at']; ?></span>
+                                    <?php 
+                                      $temp = explode(' ',$value['created_at']);
+                                    ?>
+                                    <span class="post-time"> <?php  echo "<b>Date : </b>".$temp[0]. " <b>Time : </b>".$temp[1]; ?></span>
                                 </div>
 
                                 <div class="post-settings-bar">
@@ -141,23 +147,23 @@
                                 </div>
                                 <div class="post-meta">
                                     
-                                   <span id="icon_{{$value['id']}}">
+                                <span id="icon_{{$value['id']}}">
                                     @if($value['my_like'])
                                     
                                     <button class="post-meta-like">
-                                        <i id="dislike_blog" onclick="dislike_blog(<?php echo $value['id']; ?>)" value="<?php echo $value['id']; ?>" class="fa fa-thumbs-up"> </i>
+                                        <i id="dislike_blog" onclick="dislike_blog(<?php echo $value['id']; ?>)" value="<?php echo $value['id']; ?>" class="fa fa-thumbs-up" style="color: #dc4734;"> </i>
 
                                      <!-- // blue color -->
                                     </button>
                                      @else 
                                     <button class="post-meta-like">
-                                        <i id="like_blog" onclick="like_blog(<?php echo $value['id']; ?>)" value="<?php echo $value['id']; ?>" class="fa fa-thumbs-down"> </i>
+                                        <i id="like_blog" onclick="like_blog(<?php echo $value['id']; ?>)" value="<?php echo $value['id']; ?>" class="fa fa-thumbs-up"> </i>
                                     <!-- //white color -->
                                      
                                     </button>
                                      @endif 
-                                 </span>
-                                      <span id="count_{{$value['id']}}" >  <?php echo count($value['like']);?> </span><p>people like this</p>
+                                 </span>&nbsp;
+                                      <span id="count_{{$value['id']}}" ><?php echo count($value['like']);?></span><span></span>
 
                                      
                                        
@@ -167,31 +173,28 @@
                                                 data-id="{{$value['id']}}" 
                                                 
                                             >
-                                                <i class="bi bi-chat-bubble"></i>
-                                                <span id="commentcount_{{$value['id']}}" ><?php echo Count($value['comment']) ?></span>
+                                                <i class="fa fa-comments" style="margin-top: -5px;"></i>
+                                                <span style="padding-left: 0px;" id="commentcount_{{$value['id']}}" ><?php echo Count($value['comment']) ?></span>
                                             </button>
                                         </li>
                                         <li>
                                             <button class="post-share">
-
-                                                <i class="bi bi-share"></i>
-                                                <span>0</span>
+                                                <i class="fa fa-share-alt" style="margin-top: -5px;"></i>
+                                                <span style="padding-left: 0px;">0</span>
                                             </button>
                                         </li>
                                     </ul>
-
-                                </div>
-                                <div class="card-footer">
-                                        <img src="https://cdn.pixabay.com/photo/2014/04/02/14/10/female-306407_960_720.png" alt="" class="img-fluid img-circle img-sm"> 
-                                        <div class="img-push">
-                                            <input type="text" name="comment" placeholder="Press enter to post comment" class="form-control form-control-sm" id="comment_{{$value['id']}}">
-
-                                            <!-- <input type="hidden" id="user_id" name="user_id" value="{{ Auth::user()->id }}" > --> 
-
-                                            <input type="hidden" id="blogid_{{$value['id']}}" name="blog_id" value=" <?php  echo $value['id']; ?>" > 
-
-                                           <button onclick="post_comment(<?php  echo $value['id']; ?>)" class="btn btn-primary">Post</button>
-
+                                </div><br>
+                                <div class="card-footer">  
+                                        <div class="img-push" style="margin-top: 2%;">     
+                                            <div class="input-group mb-3">
+                                                <img src="https://cdn.pixabay.com/photo/2014/04/02/14/10/female-306407_960_720.png" alt="" class="img-fluid img-circle img-sm image_edit"> 
+                                              <textarea type="text" name="comment" placeholder="Write a comment..." class="form-control form-control-sm" rows="2" id="comment_{{$value['id']}}" style="width: 81%;"></textarea>
+                                              <input type="hidden" id="blogid_{{$value['id']}}" name="blog_id" value=" <?php  echo $value['id']; ?>" > 
+                                              <div class="input-group-append">
+                                                <button onclick="post_comment(<?php  echo $value['id']; ?>)" class="btn btn-primary" style="height: 54px;"><i class="bi bi-paper-plane" style="font-size: 18px; font-weight: 600;"></i></button>
+                                              </div>
+                                            </div>
                                         </div>
                                 </div>
                             </div>
@@ -203,27 +206,26 @@
                 </div>
 
 
-<div class="modal" id="myModal">
+<div class="modal" id="myModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
-    <div class="modal-content">
 
       <!-- Modal Header -->
-      <div class="modal-header">
-        <h4 class="modal-title">Modal Heading</h4>
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-      </div>
+      <div class="modal-content"> 
+          <div class="modal-header">
+            <h4 class="modal-title">Comments</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
 
-      <!-- Modal body -->
-      <div id="comment_show_body" class="modal-body">
-     
-      </div>
+          <!-- Modal body -->
+          <div id="comment_show_body" class="modal-body">
+         
+          </div>
 
-      <!-- Modal footer -->
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-      </div>
-
-    </div>
+          <!-- Modal footer -->
+          <!-- <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+          </div> -->
+      </div> 
   </div>
 </div>
                             
@@ -330,7 +332,7 @@ function post_comment(blogid){
                   if(dataResult.length > 0){
                   var comment="<div>";
                   for (var i = 0; i < dataResult.length; i++) {
-                    comment+='<div class="row"><div class="col-md-2"><figure class="profile-thumb-middle"><img src="'+dataResult[i]["user"]["profile_pic_path"]+'" alt="profile picture"></figure></div><div class="col-md-2">'+dataResult[i]["user"]["name"]+'</div><div class="col-md-8">'+dataResult[i]["comment"]+'</div></div>'
+                    comment+='<div class="row" style="padding: 12px 0px 12px 0px; background-color: #f1f0f0; border-radius: 25px;"><div class="col-md-1"></div><div class="col-md-2"><figure class="profile-thumb-middle"><img src="'+dataResult[i]["user"]["profile_pic_path"]+'" alt="profile picture"></figure></div><div class="col-md-9" style="left:-20px;"><b>'+dataResult[i]["user"]["name"]+'</b><br>'+dataResult[i]["comment"]+'</div></div><br>'
                       // dataResult[i]
                   }
                   comment+="</div>";
@@ -372,7 +374,7 @@ function post_comment(blogid){
                   var button;
                   $(id).empty();
                 // console.log($(id).html());
-                  var button="<button class='post-meta-like'><i onclick='like_blog("+val+")' value='"+val+"' class='fa fa-thumbs-down'> </i></button>"
+                  var button="<button class='post-meta-like'><i onclick='like_blog("+val+")' value='"+val+"' class='fa fa-thumbs-up'> </i></button>"
                 $(id).append(button);
                 var asd=parseInt($(count).html());
                 asd=asd-1;
@@ -407,7 +409,7 @@ function post_comment(blogid){
                   var button;
                   $(id).empty();
                 
-                  var button="<button class='post-meta-like'><i onclick='dislike_blog("+val+")' value='"+val+"' class='fa fa-thumbs-up'> </i></button>"
+                  var button="<button class='post-meta-like'><i onclick='dislike_blog("+val+")' value='"+val+"' class='fa fa-thumbs-up' style='color: #dc4734;'> </i></button>"
                
                 $(id).append(button);
                  var asd=parseInt($(count).html());

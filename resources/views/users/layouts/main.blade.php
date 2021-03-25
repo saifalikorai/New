@@ -658,8 +658,6 @@
 
     });
 
-
-
 $(document).on("click", "#sendMessage", function() { 
 
 

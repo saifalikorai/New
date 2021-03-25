@@ -1905,8 +1905,8 @@ textarea:focus {
 }
 
 .profile-thumb-middle {
-  width: 45px;
-  height: 45px;
+  width: 40px;
+  height: 40px;
   display: block;
   border-radius: 50%;
   overflow: hidden;
@@ -3522,6 +3522,27 @@ textarea:focus {
 
 .mob-btn {
   width: 50px;
+}
+
+.image_edit
+{
+    padding: 0px 1px 0px 0px;
+    width: 35px !important;
+    height: 35px!important;
+    margin-top: 10px;
+}
+
+
+.modal-dialog{
+      overflow-y: scroll; 
+      max-height:85%;  
+      margin-top: 50px; 
+      margin-bottom:50px;
+      overflow-y: initial !important;
+}
+.modal-body{
+  height: 450px;
+  overflow-y: auto;
 }
 
 /*------- mobile footer area end -------*/
