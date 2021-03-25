@@ -169,25 +169,16 @@
                                        
                                     <ul class="comment-share-meta">
                                         <li>
-<<<<<<< HEAD
                                             <button  id="show_comment" class="post-comment" data-toggle="modal" 
                                                 data-id="{{$value['id']}}" 
                                                 
                                             >
                                                 <i class="fa fa-comments" style="margin-top: -5px;"></i>
                                                 <span style="padding-left: 0px;" id="commentcount_{{$value['id']}}" ><?php echo Count($value['comment']) ?></span>
-=======
-                <button  id="show_comment" class="post-comment" data-toggle="modal" data-id="{{$value['id']}}" >
-                                                <i class="bi bi-chat-bubble"></i>
-                                                <span id="commentcount_{{$value['id']}}" >
-                                                    <?php echo Count($value['comment']) ?>
-                                                </span>
->>>>>>> 94daa6219ee4204924652aa1dfb6294fce0f44f2
                                             </button>
                                         </li>
                                         <li>
                                             <button class="post-share">
-<<<<<<< HEAD
                                                 <i class="fa fa-share-alt" style="margin-top: -5px;"></i>
                                                 <span style="padding-left: 0px;">0</span>
                                             </button>
@@ -204,25 +195,6 @@
                                                 <button onclick="post_comment(<?php  echo $value['id']; ?>)" class="btn btn-primary" style="height: 54px;"><i class="bi bi-paper-plane" style="font-size: 18px; font-weight: 600;"></i></button>
                                               </div>
                                             </div>
-=======
-                                                <i class="bi bi-share"></i>
-                                                <span>0</span>
-                                            </button>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="card-footer">
-                                        <img src="https://cdn.pixabay.com/photo/2014/04/02/14/10/female-306407_960_720.png" alt="" class="img-fluid img-circle img-sm"> 
-                                        <div class="img-push">
-                                            <input type="text" name="comment" placeholder="Press enter to post comment" class="form-control form-control-sm" id="comment_{{$value['id']}}">
-
-                                            <!-- <input type="hidden" id="user_id" name="user_id" value="{{ Auth::user()->id }}" > --> 
-
-                                            <input type="hidden" id="blogid_{{$value['id']}}" name="blog_id" value=" <?php  echo $value['id']; ?>" > 
-
-                                           <button onclick="post_comment(<?php  echo $value['id']; ?>)" class="btn btn-primary">Post</button>
-
->>>>>>> 94daa6219ee4204924652aa1dfb6294fce0f44f2
                                         </div>
                                 </div>
                             </div>
@@ -298,7 +270,9 @@ function post_comment(blogid){
 
     });
 }
+</script>
 
+<script>
     $(document).ready(function() {
 
         $(document).on('click', '#post', function () {
@@ -333,7 +307,10 @@ function post_comment(blogid){
   });
         
 });
+</script>
 
+
+<script>
 // $(document).ready(function() {
    function show_comment(){
     var id = $(this).attr('data-id');
