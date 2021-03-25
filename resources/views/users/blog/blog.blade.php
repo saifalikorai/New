@@ -163,23 +163,20 @@
                                        
                                     <ul class="comment-share-meta">
                                         <li>
-                                            <button  id="show_comment" class="post-comment" data-toggle="modal" 
-                                                data-id="{{$value['id']}}" 
-                                                
-                                            >
+                <button  id="show_comment" class="post-comment" data-toggle="modal" data-id="{{$value['id']}}" >
                                                 <i class="bi bi-chat-bubble"></i>
-                                                <span id="commentcount_{{$value['id']}}" ><?php echo Count($value['comment']) ?></span>
+                                                <span id="commentcount_{{$value['id']}}" >
+                                                    <?php echo Count($value['comment']) ?>
+                                                </span>
                                             </button>
                                         </li>
                                         <li>
                                             <button class="post-share">
-
                                                 <i class="bi bi-share"></i>
                                                 <span>0</span>
                                             </button>
                                         </li>
                                     </ul>
-
                                 </div>
                                 <div class="card-footer">
                                         <img src="https://cdn.pixabay.com/photo/2014/04/02/14/10/female-306407_960_720.png" alt="" class="img-fluid img-circle img-sm"> 
@@ -268,9 +265,7 @@ function post_comment(blogid){
 
     });
 }
-</script>
 
-<script>
     $(document).ready(function() {
 
         $(document).on('click', '#post', function () {
@@ -305,10 +300,7 @@ function post_comment(blogid){
   });
         
 });
-</script>
 
-
-<script>
 // $(document).ready(function() {
    function show_comment(){
     var id = $(this).attr('data-id');
