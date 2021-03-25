@@ -169,25 +169,25 @@
                                        
                                     <ul class="comment-share-meta">
                                         <li>
-<<<<<<< HEAD
+
                                             <button  id="show_comment" class="post-comment" data-toggle="modal" 
                                                 data-id="{{$value['id']}}" 
                                                 
                                             >
                                                 <i class="fa fa-comments" style="margin-top: -5px;"></i>
                                                 <span style="padding-left: 0px;" id="commentcount_{{$value['id']}}" ><?php echo Count($value['comment']) ?></span>
-=======
+
                 <button  id="show_comment" class="post-comment" data-toggle="modal" data-id="{{$value['id']}}" >
                                                 <i class="bi bi-chat-bubble"></i>
                                                 <span id="commentcount_{{$value['id']}}" >
                                                     <?php echo Count($value['comment']) ?>
                                                 </span>
->>>>>>> 94daa6219ee4204924652aa1dfb6294fce0f44f2
+
                                             </button>
                                         </li>
                                         <li>
                                             <button class="post-share">
-<<<<<<< HEAD
+
                                                 <i class="fa fa-share-alt" style="margin-top: -5px;"></i>
                                                 <span style="padding-left: 0px;">0</span>
                                             </button>
@@ -204,7 +204,7 @@
                                                 <button onclick="post_comment(<?php  echo $value['id']; ?>)" class="btn btn-primary" style="height: 54px;"><i class="bi bi-paper-plane" style="font-size: 18px; font-weight: 600;"></i></button>
                                               </div>
                                             </div>
-=======
+
                                                 <i class="bi bi-share"></i>
                                                 <span>0</span>
                                             </button>
@@ -222,7 +222,6 @@
 
                                            <button onclick="post_comment(<?php  echo $value['id']; ?>)" class="btn btn-primary">Post</button>
 
->>>>>>> 94daa6219ee4204924652aa1dfb6294fce0f44f2
                                         </div>
                                 </div>
                             </div>
