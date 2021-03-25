@@ -56,7 +56,9 @@
 
                                                 <!-- message content start -->
                                                 <div class="msg-content">
-                                                    <h6 class="author"><a href="profile.html">Jhon Doe</a></h6>
+                                                    <h6 class="author">
+                                                        <a href="profile.html">Jhon Doe</a>
+                                                    </h6>
                                                     <p>Many desktop publishing packages and web page editors now use Lorem Ipsum as their default</p>
                                                 </div>
                                                 <!-- message content end -->
@@ -489,9 +491,9 @@
 
 
 <!-- Scroll to top start -->
-<div class="scroll-top not-visible">
+<!-- <div class="scroll-top not-visible">
     <i class="bi bi-finger-index"></i>
-</div>
+</div> -->
 <!-- Scroll to Top End -->
 
 <!-- footer area start -->
@@ -638,7 +640,7 @@
        // alert(receiverId);
         //alert(senderId);
         var url = "{{URL('showMessageBox')}}";
-        //var dltUrl = url+"/"+id;
+       
         $.ajax({
             url: url,
             type: "POST",
@@ -651,15 +653,20 @@
             success: function(dataResult){
                //alert(dataResult);
                $("#messages").append(dataResult);
-                //var dataResult = JSON.parse(dataResult);
-                
             }
         });
 
     });
 
+<<<<<<< HEAD
 $(document).on("click", "#sendMessage", function() { 
+=======
 
+
+$(document).on("click", "#sendMessage", function() {
+>>>>>>> 72e5d6c5ec34aafda6fcdcd48094b3844d420471
+
+$("#sendMessage").attr("disabled", "disabled"); 
 
     var receiverId = $('#receiverId').val();
     var senderId = $('#senderId').val();
@@ -668,13 +675,10 @@ $(document).on("click", "#sendMessage", function() {
     //alert(receiverId);
     //alert(senderId);
     //alert(textMessages);
-
-    
     var url = "{{URL('sendMessage')}}";
     
-    
-    
     $.ajax({
+       
         url: url,
         type: "POST",
         cache: false,
@@ -682,10 +686,13 @@ $(document).on("click", "#sendMessage", function() {
 
             receiverId: receiverId, senderId: senderId,textMessages: textMessages, _token:'{{ csrf_token() }}'
         },
-        
+
         success: function(data){
+
+            $('#textMessages').reset();
+
         alert(data);
-        $("#messages").append(dataResult);
+        $("#messages").append(data);
         //var dataResult = JSON.parse(dataResult);
         }
 
