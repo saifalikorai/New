@@ -164,8 +164,8 @@
 
                                                 <!-- message content start -->
                                                 <div class="msg-content notification-content">
-                                                    <a href="">Horijon Mbala</a>,
-                                                    <a href="">Bashu jhon</a>
+                                                    <a href="profile.html">Horijon Mbala</a>,
+                                                    <a href="profile.html">Bashu jhon</a>
                                                     <p>and 55 other people reacted to your post</p>
                                                 </div>
                                                 <!-- message content end -->
@@ -354,7 +354,7 @@
                                 </div>
                                 <!-- profile picture end -->
                                 <div class="posted-author">
-                                    <h6 class="author"><a href="">Robart Marloyan</a></h6>
+                                    <h6 class="author"><a href="profile.html">Robart Marloyan</a></h6>
                                     <span class="active-pro">active now</span>
                                 </div>
                                 <div class="live-chat-settings ml-auto">
@@ -658,13 +658,13 @@
 
     });
 
-
+<<<<<<< HEAD
 $(document).on("click", "#sendMessage", function() { 
-
+=======
 
 
 $(document).on("click", "#sendMessage", function() {
-
+>>>>>>> 72e5d6c5ec34aafda6fcdcd48094b3844d420471
 
 $("#sendMessage").attr("disabled", "disabled"); 
 
@@ -689,11 +689,9 @@ $("#sendMessage").attr("disabled", "disabled");
 
         success: function(data){
 
+            $('#textMessages').reset();
 
-            
-
-        //alert(data);
-        $('#comment_'+blogid).val("");
+        alert(data);
         $("#messages").append(data);
         //var dataResult = JSON.parse(dataResult);
         }
