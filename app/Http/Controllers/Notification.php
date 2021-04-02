@@ -14,7 +14,7 @@ use App\Model\BlogComment;
 use Auth;
 use DB;
 
-class BlogController extends Controller
+class Notification extends Controller
 {
     
     public function __construct()
@@ -55,7 +55,7 @@ class BlogController extends Controller
          $i++;
       }
         
-        return view('users.blog.blog', compact('person', 'post', 'friend', 'friends', 'blog'));
+        return view('users.notification', compact('person', 'post', 'friend', 'friends', 'blog'));
     }
     public function showallcomment(Request $req)
     {

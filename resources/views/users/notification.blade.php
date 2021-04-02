@@ -6,9 +6,8 @@
     <div class="main-wrapper pt-80">
         <div class="container">
             <div class="row">
-                <div class="col-lg-3 order-2 order-lg-1">
-                    <aside class="widget-area">
-                        <!-- widget single item start -->
+                 <div class="col-lg-3 order-2 order-lg-1">
+                    <!-- <aside class="widget-area">
                         <div class="card card-profile widget-item p-0">
                             <div class="profile-banner">
                                 <figure class="profile-banner-small">
@@ -25,20 +24,20 @@
                                 </div>
                             </div>
                         </div>
-                    
-                    </aside>
+                    </aside>  -->
+
                 </div>
                 <div class="col-lg-6 order-1 order-lg-2">
                         <div class="card card-small">
                             <div class="share-box-inner">
-                                <div class="profile-thumb">
+                               <!--  <div class="profile-thumb">
                                     <a href="#">
                                         <figure class="profile-thumb-middle">
                                             <img src="https://cdn.pixabay.com/photo/2014/04/02/14/10/female-306407_960_720.png" alt="profile picture">
                                         </figure>
                                     </a>
-                                </div>
-                                <div class="share-content-box w-100">
+                                </div> -->
+                              <!--   <div class="share-content-box w-100">
                                     <form class="share-text-box">
                                         <textarea name="share" class="share-text-field" aria-disabled="true" placeholder="Say Something" data-toggle="modal" data-target="#textbox" id="email"></textarea>
                                         <button class="btn-share" type="submit">share</button>
@@ -50,7 +49,7 @@
                                             </div>
                                         </div>
                                     @endif
-                                </div>
+                                </div> -->
                                 <!-- share content box end -->
 
 
