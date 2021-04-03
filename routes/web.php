@@ -77,7 +77,7 @@ Route::group(['middleware' => ['auth']], function () {
 	// Message rout
 	Route::post('showMessageBox', 'messageController@index')->name('ajaxRequest');
 	Route::post('sendMessage', 'messageController@sendMessagee')->name('sendMessage');
-	//Route::post('inserMessage', 'AjaxController@inserMessage')->name('inserMessage');
+	Route::get('tests', 'messageController@tests')->name('tests');
 
 	// like and dislike
 	Route::post('/likeblog','BlogController@likeblog');

@@ -56,9 +56,7 @@
 
                                                 <!-- message content start -->
                                                 <div class="msg-content">
-                                                    <h6 class="author">
-                                                        <a href="profile.html">Jhon Doe</a>
-                                                    </h6>
+                                                    <h6 class="author"><a href="profile.html">Jhon Doe</a></h6>
                                                     <p>Many desktop publishing packages and web page editors now use Lorem Ipsum as their default</p>
                                                 </div>
                                                 <!-- message content end -->
@@ -491,9 +489,9 @@
 
 
 <!-- Scroll to top start -->
-<!-- <div class="scroll-top not-visible">
+<div class="scroll-top not-visible">
     <i class="bi bi-finger-index"></i>
-</div> -->
+</div>
 <!-- Scroll to Top End -->
 
 <!-- footer area start -->
@@ -535,7 +533,7 @@
                                             </div>
                                             <!-- profile picture end -->
                                             <div class="posted-author">
-<a href="javascript:void(0)" id="showMessageBox" data-receiver-id="{{$value->id}}" data-sender-id="{{ Auth::user()->id }}" >
+<a href="javascript:void(0)"   onclick="setColor(this)" receiverId="{{$value->id}}" senderId="{{ Auth::user()->id }}" >
                                                     <h6 class="author">{{$value->name}}</h6></a>
                                                 <a href="{{route('profiles', $value->id)}}">Add Friend</a>
                                             </div>
@@ -633,36 +631,69 @@
 
 <script>
 
-    $(document).on("click", "#showMessageBox", function() { 
-        
-        var receiverId = $(this).data("receiver-id");
-        var senderId = $(this).data("sender-id");
-       // alert(receiverId);
-        //alert(senderId);
-        var url = "{{URL('showMessageBox')}}";
+             function newMessage(obj){
+                var receiverId = $(obj).attr('receiverId');
+  //alert("OK");
+// alert(receiverId);
+ //die();
+ setInterval(function(){
+ 
+setColor(receiverId,<?php  echo Auth::user()->id; ?>); 
+  
+
+  }, 15000);
+
+}
+newMessage();
+     
+
+
+         //$(document).on("click", "#showMessageBox", function(){ 
+        // setInterval(setColor, 5000);
+
+        function setColor(obj){
+
+            alert(receiverId);
+            die();
+            //setInterval(setColor, 5000);
+               var receiverId = $(obj).attr('receiverId');
+               var senderId = $(obj).attr('senderId');
        
+       //         
+               // die();
+        
+          /*var intervalId = */setInterval( function(){
+            var url = "{{URL('showMessageBox')}}";
         $.ajax({
             url: url,
             type: "POST",
             cache: false,
             data:{
-
                 receiverId: receiverId, senderId: senderId, _token:'{{ csrf_token() }}'
             },
             
             success: function(dataResult){
-               //alert(dataResult);
+              alert(dataResult);
                $("#messages").append(dataResult);
+               
+                
             }
         });
+        //clearInterval(intervalId);
 
-    });
+  },9000);
+
+
+}
+  
 
 
 
-$(document).on("click", "#sendMessage", function() {
 
-$("#sendMessage").attr("disabled", "disabled"); 
+
+
+$(document).on("click", "#sendMessage", function() { 
+
 
     var receiverId = $('#receiverId').val();
     var senderId = $('#senderId').val();
@@ -671,10 +702,13 @@ $("#sendMessage").attr("disabled", "disabled");
     //alert(receiverId);
     //alert(senderId);
     //alert(textMessages);
+
+    
     var url = "{{URL('sendMessage')}}";
     
+    
+    
     $.ajax({
-       
         url: url,
         type: "POST",
         cache: false,
@@ -682,11 +716,8 @@ $("#sendMessage").attr("disabled", "disabled");
 
             receiverId: receiverId, senderId: senderId,textMessages: textMessages, _token:'{{ csrf_token() }}'
         },
-
+        
         success: function(data){
-
-            $('#textMessages').reset();
-
         alert(data);
         $("#messages").append(data);
         //var dataResult = JSON.parse(dataResult);
