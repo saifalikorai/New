@@ -84,5 +84,9 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::post('/dislikeblog','BlogController@dislikeblog');
 	Route::get('/showallcomment','BlogController@showallcomment');
 
+	//Notifications
+
+	Route::get('/notifications','Notification@index')->name('notifications');;
+
 
 });
