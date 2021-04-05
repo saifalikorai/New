@@ -1,4 +1,3 @@
-
 @extends('users.layouts.app')
 
 @section('content')
@@ -28,169 +27,55 @@
 
                 </div>
                 <div class="col-lg-6 order-1 order-lg-2">
-                        <div class="card card-small">
-                            <div class="share-box-inner">
-                               <!--  <div class="profile-thumb">
-                                    <a href="#">
-                                        <figure class="profile-thumb-middle">
-                                            <img src="https://cdn.pixabay.com/photo/2014/04/02/14/10/female-306407_960_720.png" alt="profile picture">
-                                        </figure>
-                                    </a>
-                                </div> -->
-                              <!--   <div class="share-content-box w-100">
-                                    <form class="share-text-box">
-                                        <textarea name="share" class="share-text-field" aria-disabled="true" placeholder="Say Something" data-toggle="modal" data-target="#textbox" id="email"></textarea>
-                                        <button class="btn-share" type="submit">share</button>
-                                    </form>
-                                    @if(session()->has('success1'))
-                                        <div id="toast-container" class="toast-top-right">
-                                            <div class="toast toast-success" aria-live="polite" style="">
-                                                <div class="toast-message">{{session()->get('success1')}}</div>
-                                            </div>
-                                        </div>
-                                    @endif
-                                </div> -->
-                                <!-- share content box end -->
-
-
-                               
-                            <!-- Modal start -->
-                            <div class="modal fade" id="textbox" aria-labelledby="textbox">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title">Post Your Blog</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        {{Form::open(['route' => 'bloginsert', 'method' => 'POST', 'class' => '', 'enctype'=>'multipart/form-data'])}}
-                                        
-                                            <div class="modal-body">
-                                               
-                                            <label for="exampleInputEmail1">Title</label>
-                                                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="title" placeholder="Blog Title">
-                                                    <label> Description </label> 
-                                           
-                                                <textarea id="caption" name="caption" class="share-field-big custom-scroll" placeholder="Say Something" required></textarea>
-                                                <input type="file" class=""  id="picture" name="image" multiple accept=".jpg, .jpeg, .png, .gif" />
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="post-share-btn" data-dismiss="modal">cancel</button>
-                                                <button type="submit" class="post-share-btn" >done</button>
-                                            </div>
-                                        {{ Form::close() }}
-
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Modal end -->
-                            </div>
-                        </div>
+                      
                         <!-- share box end -->
 
                         <!-- post status start -->
+
+
+
+
+
+
+
+
+
                         
 <?php foreach($blog as $key => $value){
     //echo $value->title;
  ?>
                         <div class="card">
-                            <!-- post title start -->
-                            <div class="post-title d-flex align-items-center">
-                                <!-- profile picture end -->
-                                <div class="profile-thumb">
-                                    <a href="#">
-                                        <figure class="profile-thumb-middle">
-                                            <img src="https://cdn.pixabay.com/photo/2014/04/02/14/10/female-306407_960_720.png" alt="profile picture">
-                                        </figure>
-                                    </a>
-                                </div>
-                                <!-- profile picture end -->
+                            
 
-                                <div class="posted-author"> 
-                                    <h6 class="author"><a href="profile.html">{{ $value['user']['name'] }}</a></h6>
-                                    <span class="post-time"> <?php  echo $value['created_at']; ?></span>
-                                </div>
+                           <ul class="dropdown-msg-list">
+                                                
+                                                
+                                                <li class="msg-list-item d-flex justify-content-between">
+                                                    <!-- profile picture end -->
+                                                    <div class="profile-thumb">
+                                                        <figure class="profile-thumb-middle">
+                                                            <img src="assets/images/profile/profile-small-6.jpg" alt="profile picture">
+                                                        </figure>
+                                                    </div>
+                                                    <!-- profile picture end -->
 
-                                <div class="post-settings-bar">
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                    <div class="post-settings arrow-shape">
-                                        <ul>
-                                            <li><button>copy link to adda</button></li>
-                                            <li><button>edit post</button></li>
-                                            <li><button>embed adda</button></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- post title start -->
-                            <div class="post-content">
-                                  <label for="exampleInputEmail1"> <?php  echo $value['title']; ?></label>
-                                <p class="post-desc">
-                                  <?php  echo $value['tag_line']; ?>
-                                </p>
-                                <div class="post-thumb-gallery">
-                                    <figure class="post-thumb img-popup">
-                                        <a href=""><?php $image=$value['image']; ?>
-                                            <img src='{{"images/blog/$image" }}' alt="post image">
-                                        </a>
-                                    </figure>
-                                </div>
-                                <div class="post-meta">
-                                    
-                                   <span id="icon_{{$value['id']}}">
-                                    @if($value['my_like'])
-                                    
-                                    <button class="post-meta-like">
-                                        <i id="dislike_blog" onclick="dislike_blog(<?php echo $value['id']; ?>)" value="<?php echo $value['id']; ?>" class="fa fa-thumbs-up"> </i>
+                                                    <!-- message content start -->
+                                                    <div class="msg-content notification-content">
+                                                        <a href="profile.html">Horijon Mbala</a>,
+                                                        <a href="profile.html">Bashu jhon</a>
+                                                        <p>and 55 other people reacted to your post</p>
+                                                    </div>
+                                                    <!-- message content end -->
 
-                                     <!-- // blue color -->
-                                    </button>
-                                     @else 
-                                    <button class="post-meta-like">
-                                        <i id="like_blog" onclick="like_blog(<?php echo $value['id']; ?>)" value="<?php echo $value['id']; ?>" class="fa fa-thumbs-down"> </i>
-                                    <!-- //white color -->
-                                     
-                                    </button>
-                                     @endif 
-                                 </span>
-                                      <span id="count_{{$value['id']}}" >  <?php echo count($value['like']);?> </span><p>people like this</p>
+                                                    <!-- message time start -->
+                                                    <div class="msg-time">
+                                                        <p>15 Jan 2019</p>
+                                                    </div>
+                                                    <!-- message time end -->
+                                                </li>
+                                            </ul>
 
-                                     
-                                       
-                                    <ul class="comment-share-meta">
-                                        <li>
-                        <button  id="show_comment" class="post-comment" data-toggle="modal" data-id="{{$value['id']}}">
-                                                <i class="bi bi-chat-bubble"></i>
-                                                <span id="commentcount_{{$value['id']}}" ><?php echo Count($value['comment']) ?></span>
-                            </button>
-                                        </li>
-                                        <li>
-                                            <button class="post-share">
-
-                                                <i class="bi bi-share"></i>
-                                                <span>0</span>
-                                            </button>
-                                        </li>
-                                    </ul>
-
-                                </div>
-                                <div class="card-footer">
-                                        <img src="https://cdn.pixabay.com/photo/2014/04/02/14/10/female-306407_960_720.png" alt="" class="img-fluid img-circle img-sm"> 
-                                        <div class="img-push">
-                                            <input type="text" name="comment" placeholder="Press enter to post comment" class="form-control form-control-sm" id="comment_{{$value['id']}}">
-
-                                            <!-- <input type="hidden" id="user_id" name="user_id" value="{{ Auth::user()->id }}" > --> 
-
-                                            <input type="hidden" id="blogid_{{$value['id']}}" name="blog_id" value=" <?php  echo $value['id']; ?>" > 
-
-                                           <button onclick="post_comment(<?php  echo $value['id']; ?>)" class="btn btn-primary">Post</button>
-
-                                        </div>
-                                </div>
-                            </div>
+                          
                         </div>
 
                          <?php }  ?>
@@ -378,18 +263,13 @@ function post_comment(blogid){
       // var name = $('#like_blog').val();
       console.log(val);
       // alert(name);
-
           $.ajax({
               url: "{{URL('/likeblog')}}",
               type: "POST",
               data: {
-                  
-                  
                   blog_id: val,
                   _token:'{{ csrf_token() }}'
-                 
               },
-              
             cache: false,
             dataType: 'json',
               success: function(dataResult){
@@ -397,9 +277,7 @@ function post_comment(blogid){
                     let count="#count_"+val;
                   var button;
                   $(id).empty();
-                
                   var button="<button class='post-meta-like'><i onclick='dislike_blog("+val+")' value='"+val+"' class='fa fa-thumbs-up'> </i></button>"
-               
                 $(id).append(button);
                  var asd=parseInt($(count).html());
                 asd=asd+1;
