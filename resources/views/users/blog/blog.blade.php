@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 
 @extends('users.layouts.app')
 
@@ -453,4 +451,3 @@ function post_comment(blogid){
 </script>
 
 @endsection
->>>>>>> 4a77227a555768c3991c3b71fd0aea277ec5ba5f

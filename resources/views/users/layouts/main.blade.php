@@ -1,4 +1,6 @@
+
 <body>
+
 <!-- header area start -->
 <header>
     <div class="header-top sticky bg-white d-none d-lg-block py-3">
@@ -9,11 +11,8 @@
                     <div class="header-top-navigation">
                         <nav>
                             <ul>
-                                <li class="active navabar01">
-                                    <a href="{{asset('home')}}">home</a>
-                                </li>
-                                <li class="msg-trigger navabar01">
-                                    <a class="msg-trigger-btn" href="#a">message</a>
+                                <li class="active navabar01"><a href="{{asset('home')}}">home</a></li>
+                                <li class="msg-trigger navabar01"><a class="msg-trigger-btn" href="#a">message</a>
                                     <div class="message-dropdown" id="a">
                                         <div class="dropdown-title">
                                             <p class="recent-msg">recent message</p>
@@ -91,17 +90,19 @@
                                                 <!-- message time end -->
                                             </li>
                                         </ul>
-                                        <div class="msg-dropdown-footer">
+                                        <!-- <div class="msg-dropdown-footer">
                                             <button>See all in messenger</button>
                                             <button>Mark All as Read</button>
-                                        </div>
+                                        </div> -->
                                     </div>
                                 </li>
-                                <li class="notification-trigger navabar01">
-                                    <a class="msg-trigger-btn" href="#b">notification</a>
+                                <li class="notification-trigger navabar01"><a class="msg-trigger-btn" href="#b">notification</a>
                                     <div class="message-dropdown" id="b">
                                         <div class="dropdown-title">
                                             <p class="recent-msg">Notification</p>
+                                            <!-- <button>
+                                                <i class="flaticon-settings"></i>
+                                            </button> -->
                                         </div>
                                         <ul class="dropdown-msg-list">
                                             <li class="msg-list-item d-flex justify-content-between">
@@ -201,13 +202,9 @@
 
                                                 <!-- message content start -->
                                                 <div class="msg-content notification-content">
-                                                    <h6>
-                                                        <a href="{{route('profiles', $value->suser->id)}}">{{$value->suser->name}}</a>
-                                                    </h6>
-                                                    <p>
-                                                        <a class="btn btn-sm confirm-req" data-id="{{$value->suser->id}}" href="javascript:void(0)">confirm</a>
-                                                        <a class="btn btn-sm delete" href="">delete</a>
-                                                    </p>
+                                                    <h6><a href="{{route('profiles', $value->suser->id)}}">{{$value->suser->name}}</a></h6>
+                                                    <p><a class="btn btn-sm confirm-req" data-id="{{$value->suser->id}}" href="javascript:void(0)">confirm</a>
+                                                        <a class="btn btn-sm delete" href="">delete</a></p>
                                                 </div>
                                                 <!-- message content end -->
 
@@ -225,9 +222,7 @@
                                         </div> -->
                                     </div>
                                 </li>
-                                <li class="navabar01">
-                                    <a href="{{asset('blog')}}">Blog</a>
-                                </li>
+                                <li class="navabar01"><a href="{{asset('blog')}}">Blog</a></li>
                             </ul>
                         </nav>
                     </div>
@@ -291,12 +286,16 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- profile picture end -->
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </header>
+<!-- header area end -->
+<!-- header area start -->
+<header>
     <div class="mobile-header-wrapper sticky d-block d-lg-none">
         <div class="mobile-header position-relative ">
             <div class="mobile-logo">
@@ -343,6 +342,7 @@
                         </button>
                         <div class="mobile-chat-box">
                             <div class="live-chat-title">
+                                <!-- profile picture end -->
                                 <div class="profile-thumb">
                                     <a href="profile.html">
                                         <figure class="profile-thumb-small profile-active">
@@ -350,6 +350,7 @@
                                         </figure>
                                     </a>
                                 </div>
+                                <!-- profile picture end -->
                                 <div class="posted-author">
                                     <h6 class="author"><a href="profile.html">Robart Marloyan</a></h6>
                                     <span class="active-pro">active now</span>
@@ -419,9 +420,7 @@
                     </a>
                     <div class="profile-dropdown text-left">
                         <div class="profile-head">
-                            <h5 class="name">
-                                <a href="{{asset('profile')}}">{{ Auth::user()->name }}</a>
-                            </h5>
+                            <h5 class="name"><a href="{{asset('profile')}}">{{ Auth::user()->name }}</a></h5>
                             <a class="mail" href="{{asset('profile')}}">{{ Auth::user()->email }}</a>
                         </div>
                         <div class="profile-body">
@@ -522,7 +521,7 @@
                                     <ul>
                                         <!-- show other users -->
                                         @foreach($person as $key => $value)
-                                       
+                                        
                                         <li class="d-flex align-items-center profile-active">
                                             <!-- profile picture end -->
                                             <div class="profile-thumb active">
@@ -532,7 +531,6 @@
                                                     </figure>
                                                 </a>
                                             </div>
-<<<<<<< HEAD
                                             <!-- profile picture end -->
                                             <div class="posted-author">
 <a href="javascript:void(0)"   onclick="setColor(this)" receiverId="{{$value->id}}" senderId="{{ Auth::user()->id }}" >
@@ -541,17 +539,6 @@
                                             </div>
 
                                         </li>
-=======
-                            <!-- profile picture end -->
-                            <div class="posted-author">
-                            <a href="javascript:void(0)" id="showMessageBox" data-receiver-id="{{$value->id}}" 
-                            data-sender-id="{{ Auth::user()->id }}" onclick="myTimer()" >
-                            <h6 class="author">{{$value->name}}</h6>
-                            </a>
-                            <a href="{{route('profiles', $value->id)}}">Add Friend</a>
-                            </div>
-                            </li>
->>>>>>> 4a77227a555768c3991c3b71fd0aea277ec5ba5f
                                         @endforeach
 
                                     </ul>
@@ -587,6 +574,14 @@
 
 
                         <div class="footer-card position-relative" id="messages">
+
+                            <form action="javascript:void(0)" method="post">
+        <input type="text" id="textMessages" name="usrname">&nbsp;
+        <input type="submit" placeholder="Send" value="send" id="sendMessage">
+        <input type="hidden" id="receiverId" value="<?php //echo $receiverId; ?>">
+        <input type="hidden" id="senderId" value="<?php //echo $senderId; ?>">
+      </form>
+
                             
                         </div>
                     
@@ -644,21 +639,7 @@
 
 <script>
 
-<<<<<<< HEAD
-             function newMessage(obj){
-                var receiverId = $(obj).attr('receiverId');
-  //alert("OK");
-// alert(receiverId);
- //die();
- setInterval(function(){
- 
-setColor(receiverId,<?php  echo Auth::user()->id; ?>); 
-  
-
-  }, 15000);
-
-}
-newMessage();
+ var intervalId;
      
 
 
@@ -666,30 +647,18 @@ newMessage();
         // setInterval(setColor, 5000);
 
         function setColor(obj){
-
-            alert(receiverId);
-            die();
+            
             //setInterval(setColor, 5000);
-               var receiverId = $(obj).attr('receiverId');
-               var senderId = $(obj).attr('senderId');
-       
-       //         
-               // die();
-        
-          /*var intervalId = */setInterval( function(){
+               var receiverId = $(obj).attr('receiverid');
+               var senderId = $(obj).attr('senderid');
+               $('#receiverId').val(receiverId);
+               $('#senderId').val(senderId);
+              //  alert(receiverId);
+               
+                //die();
+          clearInterval(intervalId);
+           intervalId = setInterval( function(){
             var url = "{{URL('showMessageBox')}}";
-=======
-var myVar = setInterval(myTimer, 1000);
-
-function myTimer(){
-        /*$(document).on("click", "#showMessageBox", function(){*/ 
-        var receiverId = $(this).data("receiver-id");
-        var senderId =   $(this).data("sender-id");
-         //alert(receiverId);
-         //alert(senderId);
-        var url = "{{URL('showMessageBox')}}";
-      setInterval(function(){
->>>>>>> 4a77227a555768c3991c3b71fd0aea277ec5ba5f
         $.ajax({
             url: url,
             type: "POST",
@@ -697,31 +666,21 @@ function myTimer(){
             data:{
                 receiverId: receiverId, senderId: senderId, _token:'{{ csrf_token() }}'
             },
+            
             success: function(dataResult){
-              alert(dataResult);
+             //alert(dataResult);
+
                $("#messages").append(dataResult);
-<<<<<<< HEAD
-               
-                
+               //chat-output-box
             }
         });
         //clearInterval(intervalId);
 
-  },9000);
-
+  },2000);
 
 }
   
 
-=======
-            } 
-        });
-   },5000);
-  
-  /*  });*/
-
-}
->>>>>>> 4a77227a555768c3991c3b71fd0aea277ec5ba5f
 
 
 
@@ -734,32 +693,26 @@ $(document).on("click", "#sendMessage", function() {
     var senderId = $('#senderId').val();
     var textMessages = $('#textMessages').val();
     
-    //alert(receiverId);
-    //alert(textMessages);
+    alert(receiverId);
+    alert(senderId);
+    alert(textMessages);
 
     
     var url = "{{URL('sendMessage')}}";
-<<<<<<< HEAD
     
     
     
-=======
->>>>>>> 4a77227a555768c3991c3b71fd0aea277ec5ba5f
     $.ajax({
         url: url,
         type: "POST",
         cache: false,
         data:{
-            receiverId: receiverId, senderId: senderId,textMessages: textMessages, _token:'{{ csrf_token() }}' 
+
+            receiverId: receiverId, senderId: senderId,textMessages: textMessages, _token:'{{ csrf_token() }}'
         },
         
         success: function(data){
-<<<<<<< HEAD
         alert(data);
-=======
-            $('#textMessages').reset();
-       //alert(data);
->>>>>>> 4a77227a555768c3991c3b71fd0aea277ec5ba5f
         $("#messages").append(data);
         //var dataResult = JSON.parse(dataResult);
         }
