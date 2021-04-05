@@ -162,13 +162,10 @@
                                        
                                     <ul class="comment-share-meta">
                                         <li>
-                                            <button  id="show_comment" class="post-comment" data-toggle="modal" 
-                                                data-id="{{$value['id']}}" 
-                                                
-                                            >
+                        <button  id="show_comment" class="post-comment" data-toggle="modal" data-id="{{$value['id']}}">
                                                 <i class="bi bi-chat-bubble"></i>
                                                 <span id="commentcount_{{$value['id']}}" ><?php echo Count($value['comment']) ?></span>
-                                            </button>
+                            </button>
                                         </li>
                                         <li>
                                             <button class="post-share">
