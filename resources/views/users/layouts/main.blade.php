@@ -346,7 +346,10 @@
                                 <li><a href="#"><i class="flaticon-document"></i>Activity</a></li>
                             </ul>
                             <ul>
-                                <li><a href="{{asset('setting')}}"><i class="flaticon-settings"></i>Setting</a></li>
+                                <li>
+                                    <a href="{{asset('setting')}}">
+                                        <i class="flaticon-settings"></i>Setting</a>
+                                    </li>
                                 <li>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
@@ -451,7 +454,9 @@
                                             <div class="posted-author">
 <a href="javascript:void(0)"   onclick="setColor(this)" receiverId="{{$value->id}}" senderId="{{ Auth::user()->id }}" >
                                                     <h6 class="author">{{$value->name}}</h6></a>
-                                                <a href="{{route('profiles', $value->id)}}">Add Friend</a>
+                                                <a href="javascript:void(0)" 
+                                                    onclick="sendFriendRequest(this)" receiverId="{{$value->id}}" 
+                                                    senderId="{{ Auth::user()->id }}" >Add Friend</a>
                                             </div>
 
                                         </li>
@@ -487,6 +492,13 @@
 
 
 {{-- Message box start --}}
+
+
+    
+
+
+
+
 
 
                         <div class="footer-card position-relative" id="messages">
@@ -563,15 +575,13 @@
         // setInterval(setColor, 5000);
 
         function setColor(obj){
-            
+
             //setInterval(setColor, 5000);
                var receiverId = $(obj).attr('receiverid');
                var senderId = $(obj).attr('senderid');
                $('#receiverId').val(receiverId);
                $('#senderId').val(senderId);
               //  alert(receiverId);
-               
-                //die();
           clearInterval(intervalId);
            intervalId = setInterval( function(){
             var url = "{{URL('showMessageBox')}}";
@@ -585,13 +595,10 @@
             
             success: function(dataResult){
              //alert(dataResult);
-
                $("#messages").append(dataResult);
-               //chat-output-box
             }
         });
         //clearInterval(intervalId);
-
   },2000);
 
 }
@@ -608,10 +615,9 @@ $(document).on("click", "#sendMessage", function() {
     var receiverId = $('#receiverId').val();
     var senderId = $('#senderId').val();
     var textMessages = $('#textMessages').val();
-    
-    alert(receiverId);
-    alert(senderId);
-    alert(textMessages);
+    //alert(receiverId);
+    //alert(senderId);
+    //alert(textMessages);
 
     
     var url = "{{URL('sendMessage')}}";
@@ -628,13 +634,60 @@ $(document).on("click", "#sendMessage", function() {
         },
         
         success: function(data){
-        alert(data);
+       // alert(data);
         $("#messages").append(data);
         //var dataResult = JSON.parse(dataResult);
         }
 
     });
 });
+
+
+
+        function sendFriendRequest(obj){
+
+            //setInterval(setColor, 5000);
+               var receiverId = $(obj).attr('receiverid');
+               var senderId = $(obj).attr('senderid');
+               //$('#receiverId').val(receiverId);
+               //$('#senderId').val(senderId);
+               alert(receiverId);
+               alert(senderId);
+               
+         
+            var url = "{{URL('sendFriendRequest')}}";
+        $.ajax({
+            url: url,
+            type: "POST",
+            cache: false,
+            data:{
+                receiverId: receiverId, senderId: senderId, _token:'{{ csrf_token() }}'
+            },
+            
+            success: function(dataResult){
+             //alert(dataResult);
+               $("#messages").append(dataResult);
+            }
+        });
+       
+
+}
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
 
 </script>
 

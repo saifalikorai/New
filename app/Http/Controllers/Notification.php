@@ -41,9 +41,9 @@ class Notification extends Controller
         // echo "<pre>";print_r($blog);die();
         $i=0;
         
-        foreach ($blog as $value) {
-         $like_array =$value['like'];
-         $blog[$i]['my_like']=false;
+        foreach ($blog as $value){
+         $like_array = $value['like'];
+         $blog[$i]['my_like'] = false;
          if(!empty($like_array)){
           foreach ($like_array as $value1) {
             if($value1['user_id']==Auth::user()->id){
@@ -54,9 +54,18 @@ class Notification extends Controller
         
          $i++;
       }
+
+
+       $notification = DB::table('users')
+           ->select('users.name', 'users.email')
+           ->join('blogs_likes', 'blogs_likes.user_id', '=', 'users.id')
+           ->get();
+//exit();
         
-        return view('users.notification', compact('person', 'post', 'friend', 'friends', 'blog'));
+        return view('users.notification', compact('person', 'post', 'friend', 'friends', 'blog','notification'));
     }
+   
+
     public function showallcomment(Request $req)
     {
       $blog_id=$req['blog_id'];
@@ -77,14 +86,11 @@ class Notification extends Controller
         'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
     ]);
 
-    if ($request->hasFile('image')) {
+    if($request->hasFile('image')){
         $image = $request->file('image');
         $image_name = time().'.'.$image->getClientOriginalExtension();
         $destinationPath = public_path('/images/blog');
         $image->move($destinationPath, $image_name);
-     
-
-        
     }
 
 

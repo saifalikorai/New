@@ -20,7 +20,7 @@ class messageController extends Controller {
 
    	
    	  $senderId = $request->senderId;
-   	 echo $receiverId = $request->receiverId;
+   	 $receiverId = $request->receiverId;
 
      // $comments = DB::table('chats')->where('receiver_id', '=', 1)->get();
 

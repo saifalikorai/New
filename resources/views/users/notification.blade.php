@@ -41,49 +41,31 @@
 
 
                         
-<?php foreach($blog as $key => $value){
+<?php foreach($notification as $key => $value){
     //echo $value->title;
  ?>
                         <div class="card">
-                            
-
                            <ul class="dropdown-msg-list">
-                                                
-                                                
                                                 <li class="msg-list-item d-flex justify-content-between">
-                                                    <!-- profile picture end -->
                                                     <div class="profile-thumb">
                                                         <figure class="profile-thumb-middle">
                                                             <img src="assets/images/profile/profile-small-6.jpg" alt="profile picture">
                                                         </figure>
                                                     </div>
-                                                    <!-- profile picture end -->
-
-                                                    <!-- message content start -->
                                                     <div class="msg-content notification-content">
-                                                        <a href="profile.html">Horijon Mbala</a>,
-                                                        <a href="profile.html">Bashu jhon</a>
-                                                        <p>and 55 other people reacted to your post</p>
+                                                        <a href=""><?php echo $value->name; ?> </a>,
+                                                        <p>Reacted to your post</p>
                                                     </div>
-                                                    <!-- message content end -->
-
-                                                    <!-- message time start -->
                                                     <div class="msg-time">
                                                         <p>15 Jan 2019</p>
                                                     </div>
-                                                    <!-- message time end -->
                                                 </li>
                                             </ul>
-
-                          
-                        </div>
-
+                                      </div>
                          <?php }  ?>
                         <!-- post status end -->
                     </div> 
                 </div>
-
-
 <div class="modal" id="myModal">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -123,7 +105,6 @@ function post_comment(blogid){
 
     var comment = $('#comment_'+blogid).val();
     var blog_id = $('#blogid_'+blogid).val();
-
      // alert(blog_id);
         
     $.ajax({
@@ -150,7 +131,7 @@ function post_comment(blogid){
     });
 }
 
-    $(document).ready(function() {
+    $(document).ready(function(){
 
         $(document).on('click', '#post', function () {
         var url = "{{URL('userData')}}";

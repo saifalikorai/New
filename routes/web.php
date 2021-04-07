@@ -86,7 +86,14 @@ Route::group(['middleware' => ['auth']], function () {
 
 	//Notifications
 
-	Route::get('/notifications','Notification@index')->name('notifications');;
+	Route::get('/notifications','Notification@index')->name('notifications');
+
+	//Friend Request
+
+	Route::get('/send-friend-request','Notification@index')->name('send-friend-request');
+
+
+	
 
 
 });
